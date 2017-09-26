@@ -1,0 +1,22 @@
+
+========= Undecidability ========= 
+
+
+
+======= Deciding a Langauge/Problem =======
+
+Deciding
+
+Recursive Enumerable
+
+
+
+======= Universal Turing Machines =======  
+
+
+
+======= Halting Problem ======= 
+
+
+
+======= Heirarchy Theorems ======= 
