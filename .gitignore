@@ -11,6 +11,9 @@
 *.cb
 *.cb2
 
+## html
+*.html
+
 ## Intermediate documents:
 *.dvi
 *-converted-to.*

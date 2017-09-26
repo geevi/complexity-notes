@@ -1,0 +1,202 @@
+
+========= Introduction ========= 
+
+You have seen algorithms for a variety of problems. This begs the question
+of *whether there is an algorithm for any  given problem?*. 
+Furthermore *is there an efficient 
+algorithm for all problems?*. Even if you have an algorithm for the problem, 
+*can it be made more efficient?*. This course will be addressing these 
+questions. For answering these questions, we first need to define:
+    o What is a *problem*?
+    o What is computer/programing language, where you can execute/write 
+      the algorithms?
+    o What do you mean by *efficient*?
+
+We will start with very simplified definitions for these questions and 
+try to find the answers for this setting. 
+
+
+======= Decision Problems ======= 
+
+Typically the output of an algorithm could be a graph, a number etc. 
+But we will consider only problems with an YES or NO answer. Furthermore,
+we will define the problem to be just the set of all YES-instances. 
+You are familiar with this definition from your automata theory class. 
+For example take the REACHABILITY problem where the input is $(G(V,E), s,t)$
+where $s,t \in V$, and the problem is whether there is a path from $s$ to 
+$t$ in the graph $G$. So we will define the problem itself as the set of instances $(G,s,t)$
+where a path exists.
+
+!bt
+\mbox{REACHABILITY} = \{ (G,s,t) : \mbox{ there is a path in $G$ from } s \mbox{ to } t \}
+!et
+
+The number of instances of graphs having a particular number of vertices $n$ 
+is finite. But the set of all instances is the union of such instances with
+$n=1$ to $\infty$. Hence each instance has a *size* $n$ which is the 
+number of vertices in the graph. Size of an instance is a fundamental concept,
+and we will be defining it for all the instances. Later we will see, that size
+plays an important role in defining what we mean by an efficient algorithm.
+
+It was easy to define REACHABILITY because the original problem had an YES or
+NO answer. But can we write problems for which the outputs are numbers, as 
+decision problems? Lets consider the the problem of finding the *chromatic 
+number* of a graph. Chromatic number of a graph $G$ is the minimum number of
+distinct colors required to color a graph such that for every edge, end points
+are of different colors. Note that for a graph on $n$ vertices, the chromatic number is $\leq n$.
+
+The descision version of the chromatic number problem  takes the graph $G$ and a number $k$ between $1$ and $n$ as input. The output is YES, if the chromatic number is $\leq k$. So 
+
+!bt
+\text{CHROMATIC-NUMBER} = \{ (G,k) : \text{ chromatic number of graph } G \text{ is } \leq k \}
+!et
+
+Suppose you have an algorithm that takes $T(n)$ steps for deciding the CHROMATIC-NUMBER problem, 
+you can find the chromatic number also. For this we will create $n$ instances of CHROMATIC-NUMBER
+from the input graphs, setting $k=1$ to $n$. Note that these instances will transition from NO-instances
+to YES-instance and remain YES-instances. The chromatic number is the least $k$ for which the instance
+is an YES-instance. Hence you have algorithm which takes $n\times T(n)$ steps for finding the exact 
+chromatic number.
+
+!bu-problem
+Can you find a algorithm, which takes $(\log n) T(n)$ steps?
+!eu-problem
+
+
+======= Turing Machines ======= 
+
+The simplfied model for computer/programming language will be the Turning Machine (TM).
+The Turing Machine has many tapes (which is similar to the hard disk in 
+a modern computer) and a limited set of states (which is similar to the RAM or the cache).
+There is a read-only input tape, where the input is written and a write-only output
+tape where the output is expected when machine is finished. There is also multiple
+work tapes, which can be used for storing intermediate results in the computation.
+The work tapes are assumed to be of infinite length. This is needed because as 
+the size of the input instances becomes larger, the intermediate memory also needs to 
+be large. The set of states of the TM is fixed and does not change with input size.
+
+The input is assumed to be a string from a finite alphabet $\Sigma$. A tape cell
+can store an additional blank symbol indicating that it is unused. 
+
+The algorithm is implemented in a TM by means of a state function. The state
+function takes as arguments:
+    o the symbol under the heads of the TM in each of the tapes, 
+    o well as the current state 
+and returns 
+    o the next state
+    o the symbols to be written under each of the work tape heads
+    o the directions to move each of the heads one cell to the left, right or not move.
+
+Now we define a TM using mathematical notation. $\Sigma$ is the alphabet 
+in which input and work tape is written (for eg. binary ie. $\Sigma = \{0,1\}$). 
+The blank symbol for unwritten tape cell is $\_$. 
+Let $\Omega$ be the set of states of the TM. There are 2 special states of the
+TM called $\omega_{\text{start}}$ and $\omega_{\text{stop}}$ called the start
+and the stop states. The state transition function is denoted by 
+!bt
+\delta : \Omega \times \Sigma \cup \{ \_ \} \rightarrow \Omega \times \Sigma^k \times \{ < , > , - \}^{k+2}
+!et
+
+Now lets see an example of a TM for solving the following problem:
+!bt
+PALINDROMES = \{ x \in \{0,1\}^n : x \text{ is a palindrome}\}
+!et 
+
+First lets try to write a pseudo code for a TM solving the problem:
+
+    o Copy the input in to the second tape 
+    o Move the head in the input tape to end and second tape to begining
+    o Compare each bit by moving the input head from end to beggining and second head from beggining to end
+    o If any bit is different reject
+    o If all bits match accept
+
+We will use a turing machine simulator for implementing this. 
+See the example : http://turingmachinesimulator.com/shared/oihvkhvacu
+
+
+Note that it is extremely tedious to write algorithms as a TM. Neverthless, all the 
+algorithms can be written as TM.
+!bu-problem
+Design a TM which decides the language :
+!bt 
+DIV5 = \{ x \in \{0,1\}^n : x \text{ is binary number divisible by } 5\}
+!et
+
+Write the program first as a pseudo code and then in the format in https://turingmachinesimulator.com/.
+!eu-problem
+
+
+
+===== Robustness of TM =====
+
+We will now see that doing some modifications to the TM definitions, does not change what it can compute. We will not be going into details, but only sketch the proof.
+
+__Convert $k$ tape TMs to single tape TMs.__
+
+We will merge the $k$ tapes in to a single tape which has an alphabet that encodes all the $k$ symbols. But we will also need to encode whether the head in the $k$ tape TM was placed over a symbol. So if the orignal alphabet was $\{0,1\}$ then the new alphabet will be $\{0,1, \dot 0, \dot 1 \}^k$. 
+
+Each step of the $k$ tape TM will be simulated by the one tape TM, by doing a full pass over its tape, reading all the alphabets with $\{\dot 0, \dot 1\}$. Then it will erase and the write the dots according to the appropriate tape movement (given by the transition function of the old TM).
+
+
+__Convert alphabet from any $\Sigma$ to binary.__
+
+Suppose we have a TM with alphabet size $|\Sigma| = t$. We will encode the $t$ symbols into binary strings of length $\log t$. For each step of the old TM, the new TM will go over $\log t$ positions in its binary tape to read the symbol, and update $\log t$ positions for writing the new symbol according to the transition funciton of the old TM.
+
+It is important to note that, while doing these transformations, the alphabet size $|\Sigma|$ and the state size $|\Omega|$ remain constant, independent of the input size.
+
+
+======= Efficient Algorithms ======= 
+
+Recall that for every instance of a problem, we will have a size defined (denoted by $n$).
+The number of steps taken by the TM to decide an instance will grow with $n$.
+Hence the running time of a problem will be defined in terms of the size $n$.
+Futhermore we will be considering *worst case* running time. That is the running time
+for intances of size $n$ will be defined as the the largest running time,
+among all intances of size $n$. 
+
+For example, consider the Dijkstra's algorithm for 
+shortest path. There are instances of graph of size $n$ like a 
+$n$ length path on which the algorithm takes only $O(n)$ steps. However if the 
+graph is a complete graph, it takes $O(n^2)$ steps. But it never takes more than
+$O(n^2)$ steps on instances of size $n$. Hence running time of Dijkstra's
+algorithm will be considered as $O(n^2)$.
+
+!bu-problem
+Let $f(n)$ and $g(n)$ be any two of the following functions. Determine whether
+$f(n) = O(g(n))$,  $f(n) = \Omega(g(n))$ and $f(n) = \Theta(g(n))$.
+    o $n!$
+    o $n^{\log n}$
+    o $n^2$ when $n$ is odd and $2^n$ otherwise
+    o $n^3$
+    o $n^{n}$
+    o $2^n$
+!eu-problem
+
+
+
+===== Polynomial time vs Exponential Time =====
+
+Now lets consider the CHROMATIC-NUMBER problem. There is very simple brute force
+algorithm for it. Given an instance $(G,k)$, for every assignment of $k$ colors to 
+the vertices, check for every edge, that the end points have different colors. If we 
+find a color assignment which passes all checks, the TM can say YES. If for all 
+assignments some check fails, then the TM says NO. This is a valid algorithm. Note
+that for a NO-instance, the TM has to loop over all the color assignments which is
+$k^n$ in number, and do all the checks for each edge. Hence the running time is $O(k^n\times n^2)$.
+
+Note that the running time for the above algorithm grows exponentialy in $n$. Even if
+$n=100$, the running time is a very huge number that even a fast computer cannot hope
+to solve it. So now the question is where there is another algorithm for CHROMATIC-NUMBER,
+which is faster.
+
+Our definition of efficient algorithms will be *polynomial time algorithms*, that is 
+algorithms for which the running time is of the form $O(n^t)$ for some fixed integer $t$. 
+
+======= Readings ======= 
+
+__Chapter 3.__     
+Michael Sipser, Introduction to Theory of Computation
+
+
+__Chapter 1, Chapter 2.__
+Christos Papadimitriou, Computational Complexity

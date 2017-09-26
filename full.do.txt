@@ -1,0 +1,8 @@
+TITLE: A Short Course on Complexity Theory
+AUTHOR: Girish Varma EMAIL: girish.varma@iiit.ac.in {copyright,2017-present}  at Machine Learning Lab, IIIT Hyderabad
+DATE: today
+TOC: on
+
+
+# #include "1.do.txt"
+# #include "2.do.txt"
