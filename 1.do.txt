@@ -1,5 +1,5 @@
 
-========= Introduction ========= 
+========= Lecture 1: Introduction ========= 
 
 You have seen algorithms for a variety of problems. This begs the question
 of *whether there is an algorithm for any  given problem?*. 
@@ -66,6 +66,9 @@ Can you find a algorithm, which takes $(\log n) T(n)$ steps?
 ======= Turing Machines ======= 
 
 The simplfied model for computer/programming language will be the Turning Machine (TM).
+The discovery of the TM has a long and interesting history. See "Logicomix": "https://www.amazon.in/Logicomix-Epic-Search-Trurh-Truth/dp/0747597200/ref=sr_1_1?s=books&ie=UTF8&qid=1506918619&sr=1-1&keywords=logicomix",
+for a nice read in comic book format.
+
 The Turing Machine has many tapes (which is similar to the hard disk in 
 a modern computer) and a limited set of states (which is similar to the RAM or the cache).
 There is a read-only input tape, where the input is written and a write-only output
@@ -116,6 +119,7 @@ See the example : http://turingmachinesimulator.com/shared/oihvkhvacu
 
 Note that it is extremely tedious to write algorithms as a TM. Neverthless, all the 
 algorithms can be written as TM.
+
 !bu-problem
 Design a TM which decides the language :
 !bt 
@@ -125,6 +129,10 @@ DIV5 = \{ x \in \{0,1\}^n : x \text{ is binary number divisible by } 5\}
 Write the program first as a pseudo code and then in the format in https://turingmachinesimulator.com/.
 !eu-problem
 
+We will use a word "decidable" to indicate that a descision problem is solvable.
+A TM is said to decide a descision problem if there is a TM, that accepts
+all the YES-instances and rejects all other strings. Note that this TM will never 
+go  into an infinite loop.
 
 
 ===== Robustness of TM =====
@@ -200,3 +208,7 @@ Michael Sipser, Introduction to Theory of Computation
 
 __Chapter 1, Chapter 2.__
 Christos Papadimitriou, Computational Complexity
+
+
+__Misc: __
+"Logicomix": "https://www.amazon.in/Logicomix-Epic-Search-Trurh-Truth/dp/0747597200/ref=sr_1_1?s=books&ie=UTF8&qid=1506918619&sr=1-1&keywords=logicomix"

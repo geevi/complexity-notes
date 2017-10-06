@@ -1,22 +1,100 @@
 
-========= Undecidability ========= 
+========= Lecture 2: Paradox's and Diagonalization ========= 
+
+======= Russell's Paradox and Diagonalization ======= 
+
+*There is a village where the barbers shave only those people who 
+do not shave by themselves. Now will a does a barber shave himself?*
+
+If YES, then he cannot shave himself. If NO, then he can shave himself.
+
+See "Godel, Escher, Bach": "https://www.amazon.in/Godel-Escher-Bach-Eternal-Golden/dp/0140289208",
+for more paradoxes and their history.
+
+Now we will solve a problem using the Russell's paradox. 
+Let $\mathbb N$ be the set of natural numbers and $\mathcal{P}(N)$ is the set of all
+subsets of $\mathbb N$ (or the power set of $\mathbb N$). Show that there cannot 
+be a one to one mapping between $\mathbb N$ and $\mathcal{P}(N)$ that has range 
+equal to $\mathcal{P}(N)$ (that is for every subset of $\mathbb N$, there is some 
+integer that maps to it).
+
+Suppose there is a one to one mapping $f$ that has range 
+equal to $\mathcal{P}(N)$. Consider the set 
+!bt
+S = \{ x : x \notin f(x) \}
+!et
+Since $f$ that has range equal to $\mathcal{P}(N)$, there is some 
+integer $y$ that maps to $S$ (that is $f(y) = S$). Now does $y \in S$?
+
+!bu-problem
+Let STRINGS be the set of all infinite length binary sequences. That is 
+!bt
+\text{STRINGS} = \{ x:\mathbb{N} \rightarrow \{0,1\}  \}
+!et
+That is any infinite length binary sequence is simply a function that maps every integer 
+to the bit at the corresponding position. Show that there cannot 
+be a one to one mapping between $\mathbb N$ and STRINGS.
+!eu-problem
 
 
+======= Universal Turing Machines ======= 
+Computer as we know them are general purpose machines. That is, you can give them
+any program in a particular format (a programming langauge, or assembly), and they
+can execute it. However the Turing Machines that we saw in the previous lecture,
+seems to be tailor made for a particular problem. 
 
-======= Deciding a Langauge/Problem =======
+The first step to making Turing Machines general purpose is to encode a TM as a string,
+which could be fed as input to a general purpose TM, which we will call Universal Turing
+Machines. As we saw previously, a TM is a tuple 
 
-Deciding
+!bt
+M = (\Omega, \Sigma, \mathcal{T}, \delta, \omega_{\text{start}}, \omega_{\text{accept}}, \omega_{\text{reject}})
+!et
 
-Recursive Enumerable
+where $\Omega$ is a set of states, $\Sigma$ is the alphabet for the language, $\mathcal{T}$ is the tape 
+alphabet, $\delta$ is a transition function and $\omega_{\text{start}}, \omega_{\text{accept}}, \omega_{\text{reject}}$
+are the special start, reject, accept states respectively. Note that the states, the alphabets and the special states,
+are all finite and can be encoded as a finite alphabet. $\delta$ function also is finite and could be represented as 
+a set of rules (similar to how the turning machine simulater is doing). We will denote the string representing a
+TM $M$ by $\langle M \rangle$.
 
-
-
-======= Universal Turing Machines =======  
-
+A Universal Turing Machine takes a string $(\langle M \rangle, x)$, and simulates the running of the TM $M$ on the 
+input $x$. It is just another TM having its own transition function, alphabets and states. However it is designed
+such that it can accept a TM encoding $\langle M \rangle$ as in part of the input, and the transition function
+is defined such that it simulates the running of $M$ on a string $x$.
 
 
 ======= Halting Problem ======= 
 
+Recall that we started with the question whether all problems can be solved by a TM.
+Consider the following descision problem:
+!bt
+H = \{ (\langle M \rangle,x) : M \text{ accepts } x \}
+!et
+That is, given a TM encoding $\langle M \rangle$ and a string $x$, check if 
+$M$ accepts $x$. Can you think of a TM which decides $H$. One way is to simulate $M$ on $x$
+like the universal TM. But its possible that $M$ loops on $x$ and the UTM will also loop.
+
+Suppose there a TM $M_H$ which decides $H$. We will define a new TM $D$ which takes an encoding
+of a TM $\langle M \rangle$ as input , which does
+the following 
+    o Run $M_H$ on $(\langle M \rangle, \langle M \rangle)$.
+    o Output the opposite of what $M_H$ outputs.
+
+So $D$ accepts $\langle M \rangle$ if $M$ rejects the input $\langle M \rangle$ and 
+it rejects of if $M$ accepts the input $\langle M \rangle$. Now the question is 
+what is the output of of $D$ when run on $\langle D \rangle$?
+
+You will see that there is a problem, very similar to the Russell's paradox here. Hence 
+there cannot be a TM $D$. But we can construct $D$ if there is a TM $M_H$. So 
+neither can there be a TM $M_H$ which decides $H$.
+
+$H$ is popularly known as the halting problem which was shown by Turing to be not
+decidable (or undecidable).
+
+!bu-problem
+Let $\text{EMPTY} = \{ \langle M \rangle : M \text{ rejects all inputs } \}$. Show 
+that this problem is undecidable.
+!eu-problem
 
 
-======= Heirarchy Theorems ======= 

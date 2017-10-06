@@ -1,0 +1,12 @@
+
+========= Lecture 3: Non Determinism, NP and Search Problems ========= 
+
+======= Non Deterministic Turing Machines ======= 
+
+
+
+
+
+
+
+======= NP and Search Problems ======= 
