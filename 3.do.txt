@@ -3,10 +3,49 @@
 
 ======= Non Deterministic Turing Machines ======= 
 
+Last lecture we saw that TM's can be encoded as strings and simulated by a
+universal TM using the configurations. We also saw that simulation of a TM,
+is essentialy tracing a path in the configuration space. But in the TMs that 
+we defined, the out degree of any node (a configuration) 
+in the graph (in the configuration space) is one. 
 
+Similar to the Nondeterministic finite automata, we can also define TMs 
+with delta rules that results in multiple next states 
+(called Nondeterministic Turing Machines or NTMs). Then the delta rules
+will be of the form $\delta:\Omega\times \mathcal{T} \rightarrow \mathcal{P}(\Omega\times \mathcal{T}\times \{\langle, \rangle, -\})$.
+($\mathcal{P}$ denotes the power set). So the configuration graph of a 
+NTM can have out degree greater than $1$. However the it still has to be a finite 
+number since the size of $\mathcal{P}(\Omega\times \mathcal{T}\times \{\langle, \rangle, -\})$ is 
+finite. Following the different paths, an NTM could accept, reject or keep looping.
+So we need to define what is meant by deciding a language by an NTM.
 
+An NTM is said to decide a language (a descision problem) $L$ iff,
+for all strings in the language, there exists one path in the configuration 
+space that results in accept state.  For strings not in the language, all 
+paths in the configuration space should result in reject state.
 
+We know that NFA (Nondeterministic Finite automata) can always be converted to 
+a deterministic one. However for Pushdown Automaton this coverstion is not possible
+always. We will see that for TMs, this conversion can always be done. That is the 
+set of languages that can be decided by TMs does not change by allowing 
+nondeterminism.
 
-
+Recall that UTM simulated a deterministic TM, by tracing the path in the configuration
+space. But for NTMs, the graph in the configuration space is a tree. A simple 
+idea is for a UTM to do a graph traversal. DFS might be a bad idea, because
+some of the paths go into infinite loops. Hence it can to BFS. The first time,
+it finds that the NTM has reached the accept state, the UTM can also accept.
+If it never finds an accept state, the simulating TM rejects.
 
 ======= NP and Search Problems ======= 
+
+As we disscussed earlier, an NTM can take different paths in the configuration space.
+The length of the path is essentialy the number of steps. Now we will define 
+the worst case running time for a NTM. 
+
+For a language $L$, on inputs of size $n$, the worst case running time of an NTM 
+is the length of the longest path in the configuration space on any of the inputs 
+of size $n$.
+
+NP or Nondeterministic Polynomial time  is the class of descision problems for which,
+there is an NTM which decides it in worst case polynomial time.

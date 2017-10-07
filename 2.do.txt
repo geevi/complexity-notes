@@ -4,7 +4,7 @@
 ======= Russell's Paradox and Diagonalization ======= 
 
 *There is a village where the barbers shave only those people who 
-do not shave by themselves. Now will a does a barber shave himself?*
+do not shave by themselves. Now does a barber shave himself?*
 
 If YES, then he cannot shave himself. If NO, then he can shave himself.
 
@@ -62,6 +62,21 @@ A Universal Turing Machine takes a string $(\langle M \rangle, x)$, and simulate
 input $x$. It is just another TM having its own transition function, alphabets and states. However it is designed
 such that it can accept a TM encoding $\langle M \rangle$ as in part of the input, and the transition function
 is defined such that it simulates the running of $M$ on a string $x$.
+
+__Configuration.__ An important concept for doing simulation is the configuration of a TM. Lets 
+stick to 1-tape TMs for now. The "state" of the algorithm (not the TM state) is
+really consist of the the TM's state, the contents of its tape as well as the position
+of the tape heads. If a TM is at state $\omega_i$, has the string 101101111 in 
+its tape and the tape head is at the 5th position, then its current configuration is 
+1011 $\omega_i$ 01111. Note that this is a string over the alphabet $\mathcal{T} \cup \Omega$. 
+The computation of TM is a graph in the space of all TM configurations. If the TM 
+halts, it is a path which ends in a configuration having an accept or reject state.
+If it loops, there will be a cycle in this graph. 
+
+ 
+A universal TM, goes over a configuration string, then goes over the encoding of the delta function,
+finds out which rule in the delta function to use, and can update the configuration,
+to reflect the next configuration of the TM begin simulated.
 
 
 ======= Halting Problem ======= 
