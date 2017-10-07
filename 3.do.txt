@@ -37,7 +37,7 @@ some of the paths go into infinite loops. Hence it can to BFS. The first time,
 it finds that the NTM has reached the accept state, the UTM can also accept.
 If it never finds an accept state, the simulating TM rejects.
 
-======= NP and Search Problems ======= 
+======= Nondeterministic Polynomial Time : NP ======= 
 
 As we disscussed earlier, an NTM can take different paths in the configuration space.
 The length of the path is essentialy the number of steps. Now we will define 
@@ -49,3 +49,37 @@ of size $n$.
 
 NP or Nondeterministic Polynomial time  is the class of descision problems for which,
 there is an NTM which decides it in worst case polynomial time.
+
+======= NP : Verifier Definition ======= 
+
+We will define descision problems that are *verifiable*. A descision problem 
+is said to be verifable if there exists  a deterministic TM $M$ that takes two 
+inputs $(x,y)$ where $x$ is an instance of the descision problem and $y$ is
+called a certificate which has length of  atmost $p(n)$ where $p$ is a polynomial. 
+For YES-instances $x$, there should exist a certificate 
+$y$ such the $M$ accepts the input $(x,y)$. For instances not in the language,
+for every $y$ of length $p(n)$, $M$ should reject on $(x,y)$. Also the running
+time of $M$ must be polynomial time in size of $x$.
+
+!bu-problem
+Show that NP is the same as the set of verifable languages.
+!eu-problem
+
+An example of a verifiable language is the Clique problem.
+
+!bt
+\text{CLIQUE} = \{ (G,k): G \text{ has a clique of size } k  \}
+!et
+
+A certificate for YES-instance $(G,k)$,  is just the list of vertices in a $k$-clique.
+The polynomial time verifier just checks if there is an edge between all pairs of
+vertices. If $(G,k)$ is not in the language, then for any set of $k$ vertices,
+that you can give to the verifier, it will reject, since there will not be an 
+edge between some pair in the list.
+
+!bu-problem
+Show that the CHROMATIC-NUMBER problem defined in Lecture 1 is verifiable.
+!eu-problem
+
+
+======= Descision vs Search Problems ======= 
