@@ -1,0 +1,82 @@
+
+========= Lecture 4: Reductions, Cook-Levin Theorem and NP-Completeness ========= 
+
+The notes are mostly from Section 7.4, 7.5 in the Sipser book.
+
+======= Polynomial Time Reductions ======= 
+
+Last lecture, we showed that for some problems, the search problem can be solved in polytime,
+if the corresponding desciion problem can be solved in polytime. In this lecture,
+we will show that many desicion problems can be solved by solving one particular 
+desciion problem called $3$-SAT.
+
+For this we need first define a reduction. The following problems were defined previously
+    o $3$-SAT = $\{ \phi : \phi \text{ is a 3CNF formula that is satisfiable} \}$.
+    o CLIQUE = $\{ (G,k) : G \text{ has a clique of size } k \}.$
+
+We will say that $f$ is a (poly time) reduction from $3$-SAT to CLIQUE, if it maps $3$-CNF formulas $\phi$
+to a tuple $(G,k)$ where $G$ is a graph and $k$ is a number such that 
+    o $f$ can be computed by a polynomial time TM.
+    o $\phi$ is satisfiable if and only if $G$ has a $k$ clique.
+
+If we have such an $f$, any polynomial time algorithm for CLIQUE can be used to 
+design a polynomial time algorithm for $3$-SAT.
+
+
+Verify that: If we have such an $f$, give a polynomial time algorithm for $3$-SAT, 
+assuming there is a polynomial time algorithm for CLIQUE.
+
+
+The algorithm for computing $f$ is as follows:
+    o For every clause in $\phi$, put $3$ new verticies correponding to each literal in the clause.
+    o Put all edges in the graph except:
+        o between the 3 veritices correponding to the same clause.
+        o $x_i$ an $\bar x_i$ for all $i$.
+    o Set $k$ to be equal to the number of clauses.
+
+
+Verify the following:
+    o $f$ is polynomial time.
+    o Show that if $\phi$ is satisfiable $G$ has a $k$ CLIQUE.
+    o Show that if $G$ has a $k$ CLIQUE then $\phi$ is satisfiable.
+
+
+Such a reduction says that CLIQUE is a harder problem than $3$-SAT, because an algo for 
+CLIQUE gives an algo for $3$-SAT and we dont know if the reverse is True. Hence it is denote as
+$$ \text{CLIQUE} \geq_p 3\text{-SAT}.$$
+
+
+======= Cook-Levin Theorem ======= 
+The Cook-Levin Theorem tells that the reverse reduction also exists. In fact,
+it states that any language in NP can be reduced to SAT
+
+__Cook-Levin Theorem.__
+For any language $L \in NP$, SAT $\geq_p $ L.
+
+For doing this, for any language $L$, that has a nondeterministic polynomial time TM,
+we need to come up with a polynomial time reduction, which satisfies the conditions,
+given in the previous section.
+
+
+See Theorem 7.37 for the proof of Cook-Levin Theorem.
+
+!bu-problem
+Show that $3$-SAT $\geq_p$ SAT.
+!eu-problem
+
+======= NP Compeleness / Hardness ======= 
+
+Vertex Cover 3SAT Reduction.
+
+!bu-problem
+Solve Problem 7.21 in Sipser book
+!eu-problem
+
+!bu-problem
+Solve Problem 7.23 in Sipser book
+!eu-problem
+
+
+!bu-problem
+Solve Problem 7.27 in Sipser book
+!eu-problem

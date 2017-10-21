@@ -1,0 +1,63 @@
+
+========= Lecture 5: Space Complexity ========= 
+
+======= Space Complexity classes and some Relationships =======
+
+Let SPACE$(f(n))$ be the set of languages that can be decided in space $f(n)$,
+then 
+$$\text{TIME}(f(n)) \subseteq \text{SPACE}(f(n)) \subseteq \text{TIME}(2^{cf(n)}).$$
+
+Let coSPACE$(f(n))$ be the complements of languages in SPACE$(f(n))$, then
+$$\text{coSPACE}(f(n)) = \text{SPACE}(f(n)).$$
+
+Let L be the set of languages that can be decided in space $c\log n$ for some constant $c$,
+and PSPACE the set of languages that can be deciding in polynomial space. Then 
+$$ \text{L} \subsetneq \text{PSPACE}.$$
+
+
+!bu-problem
+Show that 
+    o $\text{L} = \text{coL} \subseteq \text{P} \subset \text{PSPACE} \subseteq \text{EXPTIME}.$
+    o $\text{L} \subsetneq \text{PSPACE}.$
+!eu-problem
+
+
+
+======= Non Determinism and Space : NL-complete, Savith's Theorem ======= 
+
+Just like we defined NP, we can define NL as the set of languages that
+is decided by a non deterministic log-space TM. Whether L = NL is again 
+a well known open problem like P = NP. We can do reductions in NL. 
+As we will see later $NL \subseteq P$. Therefore any two languages 
+in NL are polynomial time reducible (in fact a polytime machine solve the problem 
+itself). Hence for defining NL-complete langauges, we use log-space reductions
+that runs in $O(\log n)$ space (denoted by $\leq_l$). That is 
+$$\text{NL-complete} = \{ R : R \text{ is a language such that for all other languages R' } \in L, R' \leq_l R \}.$$
+
+!bu-problem
+Show that 
+    o $\text{REACHABILITY} \in \text{NL-complete}.$
+    o $\text{NL} \subseteq \text{P}.$
+!eu-problem
+
+Actually all languages is NL can be decided by a deterministic $O(\log^2 n)$ space TM. 
+This theorm is known as Savitch's Theorem.
+
+Savitch's theorem says that $\text{NPSPACE}(f(n)) \subseteq \text{SPACE}(f^2(n))$.
+See proof in proof of Theorem 8.5 in Sipser book.
+
+
+======= Overview of next part of course  =======
+
+Streaming algorithms for Well paranthesised expressions.
+Lowerbound using communication complexity.
+
+
+
+======= Readings  =======
+Chapter 8, Introduction to Theory of Computation by Micheal Sipser, Edition 2.
+
+Chapter 4, Computational Complexity: A Modern Approach
+Sanjeev Arora and Boaz Barak
+http://theory.cs.princeton.edu/complexity/book.pdf
+

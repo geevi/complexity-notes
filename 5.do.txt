@@ -1,0 +1,69 @@
+
+========= Lecture 5: More Time Complexity ========= 
+
+======= NP-completeness of Vertex Cover and Subset Sum =======
+See Section 7.5 in Sipser 2nd Edition
+
+======= EXP and Time Heirachy Theorem ======= 
+EXPTIME is the set of languages for which there is a poly time determinitic
+TM that runs in $2^{n^k}$ for some integer $k$.
+
+Clearly $\text{P} \subseteq \text{NP} \subseteq \text{EXPTIME}$.
+
+As we discussed, the question if P=NP or P $\subsetneq$ NP is an open problem.
+But what about P $\subsetneq$ EXP?
+
+This is easy to prove using diagonalization. Let DTIME($f(n)$), be the 
+set of languages that can be decided in time $f(n)$ by a determinitic TM.
+Note that P $\subseteq$ DTIME($2^n$). We will design a language that is 
+different from all languages in DTIME($2^n$) by can be decided in EXPTIME.
+
+We define the language by giving a TM $D$. $D$ takes encodings of TMs as 
+input $\langle M \rangle$. D simulates M on $\langle M \rangle$ for $2^n$ steps. 
+If M halts in $2^n$ steps, it gives the opposite answer. Otherwise it rejects.
+ Due to 
+the overheads involved in simulating a TM, the TM $D$ will take more time 
+than $2^n$, however halts in less than $2^{n^2}$ steps. Hence the 
+language decided by $D$ is in EXPTIME. 
+
+But can the language decided by $D$ be in DTIME($2^n$). That is their 
+another TM $D'$ that decided this language in $2^n$ steps. If so 
+what is the output of $D$ on the input $\langle D' \rangle$.
+
+You can see that this results in a contradiction and hence the 
+language decided by $D$ is not in P. So P $\subsetneq$ EXPTIME.
+
+The question of whether NP = EXPTIME is again open.
+
+======= coNP and Map of Complexity classes  =======
+The complement of a language $L$ is 
+$$ \bar L = \{ x : x \not in L \}.$$ 
+Let coNP $= \{ L : \bar L \in \text{NP} \}$.
+
+Another way of defining coNP is: it is the set of languages $L$ for which
+there is a determinitic TM $M$ that takes 2 inputs $x,y$ such that 
+    o If $x \in L$ then for every $y$, $M(x,y)$ accepts.
+    p If $x \notin L$ then there exist a $y$, for which $M(x,y)$ rejects.
+
+!bu-problem
+Show that these two definitions gives the same set of languages.
+!eu-problem
+
+coNP is a set of languages for which there is a certificate for non membership.
+Similar to NP-complete, we can define:
+$$\text{coNP-complete} = \{ L \in \text{coNP} : \forall L' \in \text{coNP}, L' \leq_p L \}$$
+
+
+!bu-problem
+Show that UNSAT = $\{ \phi : \phi \text{ is a boolean formula that is unsatisfiable} \}$,
+is coNP-complete
+(a formula is unstatisfiable when for all assignments to the variable, the formula evaluates to False).
+!eu-problem
+
+Note that P = coP.
+
+
+Map of complexity classes
+
+
+
