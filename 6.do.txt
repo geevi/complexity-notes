@@ -1,5 +1,5 @@
 
-========= Lecture 5: Space Complexity ========= 
+========= Lecture 6: Space Complexity ========= 
 
 ======= Space Complexity classes and some Relationships =======
 
@@ -41,7 +41,7 @@ Show that
 !eu-problem
 
 Actually all languages is NL can be decided by a deterministic $O(\log^2 n)$ space TM. 
-This theorm is known as Savitch's Theorem.
+This theorem is known as Savitch's Theorem.
 
 Savitch's theorem says that $\text{NPSPACE}(f(n)) \subseteq \text{SPACE}(f^2(n))$.
 See proof in proof of Theorem 8.5 in Sipser book.

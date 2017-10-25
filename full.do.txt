@@ -10,6 +10,8 @@ TOC: on
 # #include "4.do.txt"
 # #include "5.do.txt"
 # #include "6.do.txt"
+# #include "7.do.txt"
+# #include "8.do.txt"
 
 
 

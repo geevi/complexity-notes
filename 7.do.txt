@@ -1,58 +1,48 @@
 
-========= Lecture 5: Space Complexity ========= 
+========= Lecture 7: NL = coNL, Randomization ========= 
 
-======= Space Complexity classes and some Relationships =======
+======= Recapping Nondeterminism =======
 
-Let SPACE$(f(n))$ be the set of languages that can be decided in space $f(n)$,
-then 
-$$\text{TIME}(f(n)) \subseteq \text{SPACE}(f(n)) \subseteq \text{TIME}(2^{cf(n)}).$$
+When do we say a Nondeterministic TM accepts a languages?
 
-Let coSPACE$(f(n))$ be the complements of languages in SPACE$(f(n))$, then
-$$\text{coSPACE}(f(n)) = \text{SPACE}(f(n)).$$
+Why is it not obiviously true that $NP = coNP$.?
 
-Let L be the set of languages that can be decided in space $c\log n$ for some constant $c$,
-and PSPACE the set of languages that can be deciding in polynomial space. Then 
-$$ \text{L} \subsetneq \text{PSPACE}.$$
+Verifier definition of NP, NL.
 
-
-!bu-problem
-Show that 
-    o $\text{L} = \text{coL} \subseteq \text{P} \subset \text{PSPACE} \subseteq \text{EXPTIME}.$
-    o $\text{L} \subsetneq \text{PSPACE}.$
-!eu-problem
-
-
-
-======= Non Determinism and Space : NL-complete, Savith's Theorem ======= 
-
-Just like we defined NP, we can define NL as the set of languages that
-is decided by a non deterministic log-space TM. Whether L = NL is again 
-a well known open problem like P = NP. We can do reductions in NL. 
-As we will see later $NL \subseteq P$. Therefore any two languages 
-in NL are polynomial time reducible (in fact a polytime machine solve the problem 
-itself). Hence for defining NL-complete langauges, we use log-space reductions
-that runs in $O(\log n)$ space (denoted by $\leq_l$). That is 
-$$\text{NL-complete} = \{ R : R \text{ is a language such that for all other languages R' } \in L, R' \leq_l R \}.$$
-
-!bu-problem
-Show that 
-    o $\text{REACHABILITY} \in \text{NL-complete}.$
-    o $\text{NL} \subseteq \text{P}.$
-!eu-problem
-
-Actually all languages is NL can be decided by a deterministic $O(\log^2 n)$ space TM. 
-This theorm is known as Savitch's Theorem.
-
-Savitch's theorem says that $\text{NPSPACE}(f(n)) \subseteq \text{SPACE}(f^2(n))$.
-See proof in proof of Theorem 8.5 in Sipser book.
-
-
-======= Immerman-Szelepcsenyi Theorem  =======
+======= Immerman-Szelepcsenyi Theorem : NL = coNL =======
 
 In time complexity, we didnt have a proof of NP = coNP. This remains an open problem.
 However in space complexity, we know that NL = coNL. This theorem is known as the 
 Immerman-Szelepcsenyi Theorem.
 See Section 8.6 in Sipser book.
+
+
+!bu-problem
+Given an NL algorithm (use verifier definition) :
+    o which on input a graph $G(V,E)$, vertices $s,t \in V$ and a number $i$, checks if $s$ is reachable from $t$ in $\leq i$ steps.
+    o which on input a graph $G(V,E)$, verticex $s \in V$ and a numbers $i, c$, checks if the number of vertices reachable from $s$ in $i$ steps is  $\geq c$.
+    o which on input a graph $G(V,E)$, verticex $s \in V$ and a numbers $i, c$, checks if the number of vertices not reachable from $s$ in $i$ steps is  $=c$.
+!eu-problem
+
+
+======= Randomized TMs and Complexity Classes =======
+
+!bu-problem
+Show that
+    o RP $\subseteq$ BPP
+    o coRP $\subseteq$ BPP
+    o BPP $\subseteq$ PSPACE
+    o RP $\subseteq$ NP
+    o BPP $=$ coBPP
+!eu-problem
+
+
+
+!bu-problem
+*Bonus Problem*
+A forest is a graph which is a disjoint union of trees (ie tree on different set of vertices).
+Show that REACHABILITY in a forest can be solved using $O(\log n)$ space.
+!eu-problem
 
 
 ======= Readings  =======

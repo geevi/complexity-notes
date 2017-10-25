@@ -1,0 +1,34 @@
+
+========= Lecture 8: Randomized Algos ========= 
+
+
+======= Randomization: PIT and Schwartz-Zippel Lemma ======= 
+Polynomial written as a arithmetic circuit.
+
+PIT problem
+
+Schwartz-Zippel Lemma
+
+Randomized algorithm for PIT
+
+Randomized algo for Perfect Matching
+
+
+=======  Approx MAX-CUT  =======
+
+
+
+======= Undirected REACHABILITY in RL ======= 
+
+
+======= Readings  =======
+
+Chapter 2, Pseudorandomness survey,
+Salil Vadhan 
+https://people.seas.harvard.edu/~salil/pseudorandomness/power.pdf
+https://people.seas.harvard.edu/~salil/pseudorandomness/
+
+Chapter 7, Computational Complexity: A Modern Approach
+Sanjeev Arora and Boaz Barak
+http://theory.cs.princeton.edu/complexity/book.pdf
+
