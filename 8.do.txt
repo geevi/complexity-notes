@@ -11,8 +11,9 @@ for any small constant $\epsilon$.
 Let $\text{BPP}_\alpha$ be the class of languguages L that have a PTM M such that
     o If $x\in L$ then $\Pr[M(x) \text{accepts}] \geq \alpha$.
     o If $x\notin L$ then $\Pr[M(x) \text{rejects}] \geq \alpha$.
+ 
 Show that:
-    o $\text{BPP}_{1/2}$ is the set of all languguages.
+    o $\text{BPP}_{1/2}$ is the set of all languages.
     o $\text{BPP}_{2/3} = \text{BPP}_{20/27}$ (without using Chernoff's Bounds).
 !eu-problem
 
@@ -25,6 +26,14 @@ See Section 2.3.4 in
 https://people.seas.harvard.edu/~salil/pseudorandomness/power.pdf
 
 
+!bu-problem
+The Approximate-$7/8$-$3$SAT problem is given an input a $3$-SAT boolean formula,
+find an assignment that satisfies atleast $7/8$ fraction of the clauses (ie if 
+there are $m$ clauses, find an assignment that satisfies $m\times 7/8$ clauses).
+
+Give a randomized algorithm which solves Approximate-7/8-3SAT (answer just need
+to be correct in expectation as we discussed for the MAXCUT problem in class.).
+!eu-problem
 
 ======= Undirected REACHABILITY in RL ======= 
 
@@ -41,7 +50,7 @@ Show that:
 
 
 !bu-problem
-**Bonus Problem**
+_Bonus Problem_
 Let M be the adjacency matrix of a undirected $d$-regular graph $G$ (all vertices have exactly $d$ neighbours).
 Show that:
     o If there are $c$ linearly independent eigenvectors of $M$ with eigen value $d$ then $G$ has $c$ connected components.
