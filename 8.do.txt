@@ -1,27 +1,56 @@
 
 ========= Lecture 8: Randomized Algos ========= 
 
+=======  BPP and Amplification  =======
 
-======= Randomization: PIT and Schwartz-Zippel Lemma ======= 
-Polynomial written as a arithmetic circuit.
+Last lecture we saw that $\text{RP}_{1/100} = \text{RP}_{99/100}$. 
+This lecture we said that $\text{BPP}_{1/2 + \epsilon} = \text{BPP}_{1 - \epsilon}$
+for any small constant $\epsilon$.
 
-PIT problem
+!bu-problem
+Let $\text{BPP}_\alpha$ be the class of languguages L that have a PTM M such that
+    o If $x\in L$ then $\Pr[M(x) \text{accepts}] \geq \alpha$.
+    o If $x\notin L$ then $\Pr[M(x) \text{rejects}] \geq \alpha$.
+Show that:
+    o $\text{BPP}_{1/2}$ is the set of all languguages.
+    o $\text{BPP}_{2/3} = \text{BPP}_{20/27}$ (without using Chernoff's Bounds).
+!eu-problem
 
-Schwartz-Zippel Lemma
 
-Randomized algorithm for PIT
-
-Randomized algo for Perfect Matching
-
+See Chapter 10.2 in Sipser
 
 =======  Approx MAX-CUT  =======
+See Chapter 10.1 in Sipser for approximation algorithms. 
+See Section 2.3.4 in 
+https://people.seas.harvard.edu/~salil/pseudorandomness/power.pdf
 
 
 
 ======= Undirected REACHABILITY in RL ======= 
 
+See Section 2.4 in 
+https://people.seas.harvard.edu/~salil/pseudorandomness/power.pdf
+
+!bu-problem
+Let M be the adjacency matrix of a undirected $d$-regular graph $G$ (all vertices have exactly $d$ neighbours).
+Show that:
+    o $d$ is an eigenvalue of $M$.
+    o If $c$ is the number of connected components in $G$, then there are $c$ linearly independent eigenvectors of $M$ with eigen value $d$.
+    o If $G$ is a bipartite graph then $-d$ is an eigenvalue of $M$.
+!eu-problem
+
+
+!bu-problem
+**Bonus Problem**
+Let M be the adjacency matrix of a undirected $d$-regular graph $G$ (all vertices have exactly $d$ neighbours).
+Show that:
+    o If there are $c$ linearly independent eigenvectors of $M$ with eigen value $d$ then $G$ has $c$ connected components.
+    o If $-d$ is an eigenvalue of $M$ then $G$ is a bipartite graph,.
+!eu-problem
 
 ======= Readings  =======
+
+Chapter 10, Intro to Theory of Comp., Edition 2, Sipser
 
 Chapter 2, Pseudorandomness survey,
 Salil Vadhan 

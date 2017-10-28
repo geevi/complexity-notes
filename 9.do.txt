@@ -1,0 +1,19 @@
+
+========= Lecture 9:   ========= 
+
+
+======= Analysis of Random Walks ======= 
+
+
+======= Randomization: PIT and Schwartz-Zippel Lemma ======= 
+Polynomial written as a arithmetic circuit.
+
+PIT problem
+
+Schwartz-Zippel Lemma
+
+Randomized algorithm for PIT
+
+Randomized algo for Perfect Matching
+
+======= Readings  =======
